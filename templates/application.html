@@ -1,18 +1,22 @@
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Buffalo - Magazine</title>
-    <link rel="stylesheet" href="/assets/application.css" type="text/css" media="all" />
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="<%= authenticity_token %>" />
-  </head>
-  <body>
-
-    <div class="container">
-      <%= partial("flash.html") %>
-      <%= yield %>
-    </div>
-    
-    <script src="/assets/application.js" type="text/javascript" charset="utf-8"></script>
-  </body>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" >
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token" content="<%= authenticity_token %>"/>
+    <style>
+        .body {
+            height: 100%;
+            margin: 0;
+            padding: 24px;
+            box-sizing: border-box;
+            background-color: rgb(42, 44, 42);
+        }
+    </style>
+</head>
+<body class="body">
+<%= yield %>
+</body>
 </html>

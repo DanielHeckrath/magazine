@@ -1,12 +1,9 @@
-var webpack = require("webpack");
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: [
       "./assets/js/application.js",
-      "./node_modules/jquery-ujs/src/rails.js",
-      "./assets/css/application.scss"
   ],
   output: {
     filename: "application.js",
@@ -14,10 +11,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
     }),
-    new ExtractTextPlugin("application.css"),
     new CopyWebpackPlugin([{
       from: "./assets",
       to: ""
@@ -28,40 +22,26 @@ module.exports = {
       ]
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
+      minimize: false,
+      debug: true
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true
-      },
-      compress: {
-        screw_ie8: true
-      },
-      comments: false
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   beautify: false,
+    //   mangle: {
+    //     screw_ie8: true,
+    //     keep_fnames: true
+    //   },
+    //   compress: {
+    //     screw_ie8: true
+    //   },
+    //   comments: false
+    // })
   ],
   module: {
     rules: [{
       test: /\.jsx?$/,
       loader: "babel-loader",
       exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      use: ExtractTextPlugin.extract({
-        fallback: "style-loader",
-        use:
-        [{
-          loader: "css-loader",
-          options: { sourceMap: true }
-      	},
-        {
-          loader: "sass-loader",
-          options: { sourceMap: true }
-        }]
-      })
     }, {
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
       use: "url-loader?limit=10000&mimetype=application/font-woff"
@@ -77,9 +57,6 @@ module.exports = {
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
       use: "url-loader?limit=10000&mimetype=image/svg+xml"
-    }, {
-      test: require.resolve('jquery'),
-      use: 'expose-loader?jQuery!expose-loader?$'
     }]
   }
 };

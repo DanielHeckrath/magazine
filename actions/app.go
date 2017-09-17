@@ -11,6 +11,7 @@ import (
 	"github.com/gobuffalo/buffalo/middleware/csrf"
 	"github.com/gobuffalo/buffalo/middleware/i18n"
 	"github.com/gobuffalo/packr"
+	"github.com/NYTimes/gziphandler"
 )
 
 // ENV is used to help switch settings based on where the
@@ -27,6 +28,9 @@ func App() *buffalo.App {
 		app = buffalo.Automatic(buffalo.Options{
 			Env:         ENV,
 			SessionName: "_magazine_session",
+			PreWares: []buffalo.PreWare{
+				gziphandler.GzipHandler,
+			},
 		})
 		// Automatically redirect to SSL
 		app.Use(ssl.ForceSSL(secure.Options{
