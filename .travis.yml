@@ -17,6 +17,6 @@ go_import_path: github.com/DanielHeckrath/magazine
 
 install:
   - go get github.com/gobuffalo/buffalo/buffalo
-	- go get github.com/golang/dep/cmd/dep
+    - go get github.com/golang/dep/cmd/dep
   - dep ensure
-	script: buffalo test
+    script: buffalo test
