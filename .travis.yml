@@ -10,8 +10,8 @@ env:
 services:
   - postgresql
 before_script:
-	- psql -c 'create database magazine_test;' -U postgres
-	- mkdir -p $TRAVIS_BUILD_DIR/public/assets
+  - psql -c 'create database magazine_test;' -U postgres
+  - mkdir -p $TRAVIS_BUILD_DIR/public/assets
 
 go_import_path: github.com/DanielHeckrath/magazine
 
